@@ -112,4 +112,4 @@ Initially after the first render, the screen displayed on the device has the fol
     • The mode of Transportation can be selected from the  Dropdown (Mode) component (Driving /Cycling / Walking)
     • A Button component (Show Route) 
     • A Mapbox MapView Component which displays the map.
-    <img src='images/Screenshot_1519199758.png" />
+    <img src='images/Screenshot_1519199758.png" >
