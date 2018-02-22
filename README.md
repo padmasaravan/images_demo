@@ -27,6 +27,10 @@ WhizzMap is a simple Mapbox based app that was developed as part of Hasura Produ
 - Source code for the react-native app is in the **```react-native```** folder of the git repo
 - The Google Drive link to the **.apk** file is  - **https://drive.google.com/open?id=1NjZdkVLHAhH9K7RKXCO0xpHFsJ1_UqLQ**
 
+Demo of the WhizzMap - Mobile App
+
+[![IMAGE ALT TEXT](https://img.youtube.com/vi/vi3WBzV_kEA/0.jpg)](https://www.youtube.com/watch?v=vi3WBzV_kEA "WhizzMap - Mobile Version")
+
 ## Pre-requisites
 
 - We need **Node.js** and ```npm``` (Package Manager for Javascript) to start with. Ensure that you have Node installed on your computer, do this by running ```node -v``` in the terminal. If you do not have Node installed you can get it from https://nodejs.org
