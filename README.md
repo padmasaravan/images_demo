@@ -1,8 +1,5 @@
 # WhizzMap
 
-<<<<<<< HEAD
-WhizzMap is a simple Mapbox based app that was developed as part of Hasura Product Development Fellowship – Version 2 (*HPDFv2*) by Team 51. It consists of 
-=======
 WhizzMap is a simple Mapbox based app that was developed as part of Hasura Product Development Fellowship – Version 2 (HPDFv2) by Team 51. It consists of 
 >>>>>>> d64c0e9511ec61c3b65908c333c7a9bed2c2429d
 - a React JS based Web app
