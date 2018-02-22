@@ -1,17 +1,15 @@
 # WhizzMap
 
-WhizzMap is a simple Mapbox based app that was developed as part of Hasura Product Development Fellowship – Version 2 (HPDFv2) by Team 51. It consists of 
->>>>>>> d64c0e9511ec61c3b65908c333c7a9bed2c2429d
+WhizzMap is a simple Mapbox based app that was developed as part of Hasura Product Development Fellowship – Version 2 (*HPDFv2*) by Team 51. It consists of 
 - a React JS based Web app
 - a ReactNative based mobile app
 - a Python Flask back-end API
 
 ## Contributors:
 
-<<<<<<< HEAD
-- React JS – Web app : Sathya 
-- React Native – Mobile App : Padma
-- Backend – Python -Flask : Vinitha
+- React JS – Web app : [Sathya](https://github.com/sathya9897)
+- React Native – Mobile App : [Padma](https://github.com/padmasaravan) 
+- Backend – Python -Flask : [Vinitha](https://github.com/vinitha-shree0)
 
 ## About the App :
 
@@ -121,90 +119,83 @@ After the git push completes:
 - Run ```npm install``` from this new directory
 - Make changes in your backend if needed.
 - App is ready
-=======
-- React JS – Web app : 
-- React Native – Mobile App :
-- Backend – Python -Flask :
 
-## About the App :
+## Steps to build an .apk file (React Native app) :
 
-- A simple Map that allows users to enter the source, destination and the mode of transportation ( Driving / Cycling / Walking )
+Generating **```.apk```** file for App created  through **```react-native init```** on Windows.
 
-
-## What does this come with?
-
-This is a fully working react-native app with a [Hasura](https://hasura.io) backend. You can clone it and modify as per your requirements. It has basic BaaS features implemented. Also, it uses [NativeBase](https://nativebase.io) for better UI.
-
-- When you clone this quickstart project, there are two tables (article and author) in your database populated with some data.
-
-```:bash
-Note: This is just to get you familiar with the system. You can delete these tables whenever you like.
+- In the command prompt , **```cd```** to your React Native project, here it is **```react-native```**
+- Create the dir **assets** if not already there in the path **\android\app\src\main\assets**
+- Run the command, 
+```bash
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 ```
+- Open the **```android```** folder of the  React Native app in **Android Studio** and follow the instructions to create a certificate to sign the apk
+- Open **Build-> Generate Signed APK...** in the Android Studio Toolbar and follow the instructions
+<img src='images/Generate_Signed_APK_1.png' width='450' >
 
-- There is a login screen in this app where the authentication is managed by the Hasura Auth APIs.
-- Then we make data API calls to get the list of articles and their authors.
-- The functions that make these calls are in the `react-native/src/hasuraApi.js` file. Modify it as you like and the changes will reflect in the app.
+- In the **Generate Signed APK** Dialog box,  click **Create new** button.
+	<img src='images/Generate_Signed_APK_2.png' width='450' >
+- Fill all the information on ‘New Key Store’ dialog box. Click ‘OK’. Click ‘Next’. Click ‘Finish’
+-  In the next Dialog box , chose the destination folder for the APK file
+- Chose Build Type as – **release**
+- Signature Versions : **V1** . 
+- V2 is for Android 7.0 and above.
+- Generated .apk file will be generated and stored in the chosen path **(android\app\release)**
+<img src='images/Generate_Signed_APK_3.png' width='450' >
 
-## How to get it running?
+## Working of the App:
+Initially after the first render, the screen displayed on the device has the following components,
+- The screen has 2 TextInput components to enter the Source & Destination
+- The mode of Transportation can be selected from the  Dropdown (Mode) component (Driving /Cycling / Walking)
+- A Button component (Show Route) 
+- A Mapbox MapView Component which displays the map.
 
-### Reqirements
+<img src='WhizzMap_1.png' width='500' >
 
-In order to get this app running, you must have the following:
-1. [hasura CLI tool](https://docs.hasura.io/0.15/manual/install-hasura-cli.html) (hasura).
+Once the source, destination and  Mode of transportation details are entered by the user, the request to API endpoint /directions is sent by the app.
 
-2. Expo client (XDE). Download from https://expo.io/tools
+This is triggered by two events, 
+1. User presses the Show Route Button
+2. User changes the Mode (Driving /Cycling / Walking)
 
-3. NodeJS
+The response from the server is processed, if no routes are found, an alert box is displayed.
 
-(For more such apps, check out https://hasura.io/hub)
-
-### Pushing the project to the cluster
-
-- To get cluster information, run `hasura cluster status`. Info will be of the following form.
-
+```javascript
+	const resData = resBackEnd.data;
+	const resDirc = resData.routes[0]; // directions
+	if (!resDirc){
+			Alert.alert('No Route Error','No route found for the given inputs !!!');
+           		return;
+	}
 ```
-INFO Reading cluster status...
-INFO Status:
-Cluster Name:       athlete80
-Cluster Alias:      hasura
-Kube Context:       athlete80
-Platform Version:   v0.15.3
-Cluster State:      Synced
+On successful processing of the response, the Coordinates of the Source & Destination , the time taken for travel  (in secs) , Distance to be traveled  (in metres )and Turn by Turn instructions are extracted and displayed on screen.
+
+```javascript
+			srcCoord= resData.origin.geometry.coordinates; 
+         	destCoord= resData.destination.geometry.coordinates; 
+         	const resDist= resData.routes[0].distance; 
+        	 const resDurn= resData.routes[0].duration;
+         	const resSteps= resData.routes[0].steps; // instructions
+         
+        	 //Instructions to travel from source to destination
+ 
+         	let instructions = [];
+         	resSteps.forEach(step => {
+            	 	instructions.push(step.maneuver.instruction);
+        	 });
 ```
+- The Source and Destination are added to the map as ```Point Annotation```
+- The route between the places is displayed on the map using ```ShapeSource``` component.
 
-- Set the cluster name in your project by modifying `react-native -> src -> hasuraApi.js`
+<img src='WhizzMap_2.png' width='500' >
 
-```:javascript
-const clusterName = athlete80;
-```
-
-- Install the required node modules. Run the following command from the project directory.
-
-```
-$ cd react-native && npm install
-```
-
-- Run the following commands from the project directory to push it to your Hasura cluster.
-```
-$ git add .
-$ git commit -m "Commit message"
-$ git push hasura master
-```
-**The app is now ready to use!!**
-
-### Opening the app
-
-- Open Expo XDE, do a login/signup and click on `Open existing project...`. Browse to the hello-react-native directory and open the react-native folder.
-- Once the project loads, click on Share.
-- Scan the QR code using the Expo app from your phone (Install from Playstore/Appstore)
-- Fully working app will open on your phone
-
-```
-Note: You can open the app with any of your desired react-native simulators. We prefer Expo because of its simple onboarding for beginners.
-```
-
-(*Shoutout to [NativeBase](https://nativebase.io) for their excellent UI components.*)
-
+- At the bottom of the screen, the below mentioned details are displayed,
+  1. Time taken to travel from source to destination in Days / Hrs / Mins
+  2. Distance in kms
+  3. A  ```Touchable Opacity Component``` (Show Directions) , which when pressed opens a ```ActionSheet``` displaying the Turn by Turn instructions to travel from source to Destination.
+  
+<img src='WhizzMap_3.png' width='500' >
 
 ## How to include a database?
 
