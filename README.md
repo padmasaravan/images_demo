@@ -9,7 +9,7 @@ WhizzMap is a simple Mapbox based app that was developed as part of Hasura Produ
 
 - React JS – Web app : [Sathya](https://github.com/sathya9897)
 - React Native – Mobile App : [Padma](https://github.com/padmasaravan) 
-- Backend – Python -Flask : [Vinitha](https://github.com/vinitha-shree0)
+- Backend – Python -Flask : [Vinitha](https://github.com/vinitha-shree)
 
 ## About the App :
 
