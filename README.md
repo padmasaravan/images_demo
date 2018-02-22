@@ -107,18 +107,6 @@ After the git push completes:
 - Change the directory to the ```react-native``` folder. Run the command, ```react-native run-android```
 - To change or modify the app, start editing from ```index.js``` file ( the entry point of React Native applications)  in the ```react-native``` folder
     
-## Managing app dependencies:
-
-- ```npm/yarn``` dependencies  can be managed by editing ```package.json```.
-- Changes to the server can be done by editing the source code in ```microservices/app``` 
-- If you have an existing Backend server, u can replace it with existing server and modify the React Native code accordingly.
-
-## Migrating your existing ReactNative app:
-
-- Replace ```react-native``` directory with your pre-existing react-native project directory.
-- Run ```npm install``` from this new directory
-- Make changes in your backend if needed.
-- App is ready
 
 ## Steps to build an .apk file (React Native app) :
 
@@ -131,7 +119,9 @@ Generating **```.apk```** file for App created  through **```react-native init``
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/
 ```
 - Open the **```android```** folder of the  React Native app in **Android Studio** and follow the instructions to create a certificate to sign the apk
+
 - Open **Build-> Generate Signed APK...** in the Android Studio Toolbar and follow the instructions
+
 <img src='images/Generate_Signed_APK_1.png' width='450' >
 
 - In the **Generate Signed APK** Dialog box,  click **Create new** button.
@@ -142,6 +132,7 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 - Signature Versions : **V1** . 
 - V2 is for Android 7.0 and above.
 - Generated .apk file will be generated and stored in the chosen path **(android\app\release)**
+
 <img src='images/Generate_Signed_APK_3.png' width='450' >
 
 ## Working of the App:
@@ -273,22 +264,25 @@ $ hasura api-console
 ```
 $ hasura api-console
 ```
+## Managing app dependencies:
 
-## How to migrate from an existing project?
+- ```npm/yarn``` dependencies  can be managed by editing ```package.json```.
 
-- Replace react-native directory with your pre-existing react-native project directory.
-- run `npm install` from this new directory
-- Make changes in your backend with API-Console
+## Migrating your existing ReactNative app:
+
+- Replace ```react-native``` directory with your pre-existing react-native project directory.
+- Run ```npm install``` from this new directory
+- Make changes in your backend if needed.
 - App is ready
 
 ## How to use a custom API/server?
 
 - Sometimes you might need to add new microservices/APIs as per your requirements. In such cases, you can deploy your microservices with Hasura using git push or docker.
-- This quickstart comes with one such custom microservice written in nodejs using the express framework. Check it out in action at `https://api.<cluster-name>.hasura-app.io`. Currently, it just returns a "Hello-React" at that endpoint.
+- This quickstart comes with one such custom microservice written in Python using the flask framework. Check it out in action at `https://api.<cluster-name>.hasura-app.io`. Currently, it just returns a "WhizzMap" at that endpoint.
 - This microservice is in the microservices folder of the project directory. You can add your custom microservice there.
 - To generate your own custom microservice, run
 
 ```
 $ hasura microservice generate --help
 ```
->>>>>>> d64c0e9511ec61c3b65908c333c7a9bed2c2429d
+
