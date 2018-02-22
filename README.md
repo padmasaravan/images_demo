@@ -151,7 +151,7 @@ Initially after the first render, the screen displayed on the device has the fol
 - A Button component (Show Route) 
 - A Mapbox MapView Component which displays the map.
 
-<img src='WhizzMap_1.png' width='500' >
+<img src='images/WhizzMap_1.png' width='500' >
 
 Once the source, destination and  Mode of transportation details are entered by the user, the request to API endpoint /directions is sent by the app.
 
@@ -188,14 +188,14 @@ On successful processing of the response, the Coordinates of the Source & Destin
 - The Source and Destination are added to the map as ```Point Annotation```
 - The route between the places is displayed on the map using ```ShapeSource``` component.
 
-<img src='WhizzMap_2.png' width='500' >
+<img src='images/WhizzMap_2.png' width='500' >
 
 - At the bottom of the screen, the below mentioned details are displayed,
   1. Time taken to travel from source to destination in Days / Hrs / Mins
   2. Distance in kms
   3. A  ```Touchable Opacity Component``` (Show Directions) , which when pressed opens a ```ActionSheet``` displaying the Turn by Turn instructions to travel from source to Destination.
   
-<img src='WhizzMap_3.png' width='500' >
+<img src='images/WhizzMap_3.png' width='500' >
 
 ## How to include a database?
 
